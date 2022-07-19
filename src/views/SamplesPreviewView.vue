@@ -1,17 +1,25 @@
 <template>
   <v-container>
+    <v-app-bar app>
+        <v-slide-group show-arrows>
+          <v-slide-item v-for="(samples, type) in samples" :key="type">
+            <v-btn :href="'#' + type" depressed rounded>{{ type }}</v-btn>
+          </v-slide-item>
+        </v-slide-group>
+    </v-app-bar>
+
     <!-- <v-row>
       <v-col>
         <pre style="height: 300px; overflow-y: scroll;">{{ $store.getters.samplesByType }}</pre>
       </v-col>
     </v-row> -->
-    <div v-for="(samples, type) in samples" :key="type">
+    <section v-for="(samples, type) in samples" :key="type" :id="type">
       <v-row>
         <v-col class="pa-3">
           <h3 class="width: 100%;">{{ type }}</h3>
         </v-col>
       </v-row>
-      <v-row  class="grid-row">
+      <v-row class="grid-row">
         <v-col class="pa-3 grid">
           <div
             v-for="sample, sample_index in samples"
@@ -37,7 +45,7 @@
           </div>
         </v-col>
       </v-row>
-    </div>
+    </section>
   </v-container>
 </template>
 
@@ -111,6 +119,10 @@ export default {
   }
 }
 
+section {
+  scroll-margin-top: 3.2rem;
+}
+
 .play-button {
   border: 0.3rem solid #ccc;
   background-color: #666;
@@ -130,7 +142,7 @@ export default {
 }
 
   .playing * {
-    color: #f33;
+    /* color: #f33; */
   }
 
 /* CSS ANIMATION */
