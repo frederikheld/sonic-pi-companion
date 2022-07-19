@@ -1,6 +1,6 @@
 <template>
   <div class="grid">
-    <button  v-for="path, index in samplesPaths" :key="index"
+    <button  v-for="path, index in samplesPaths" :key="index" :class="classPlaying(sampleName(path))"
       class="play-sample"
       @click="playSample(path)"
     >
@@ -16,7 +16,7 @@ export default {
   components: { },
   data () {
     return {
-
+      currentlyPlaying: []
     }
   },
   computed: {
@@ -26,12 +26,20 @@ export default {
   },
   methods: {
     playSample (path) {
-      console.log('playing sample', path)
       const audio = new Audio(require('@/' + path))
+      this.currentlyPlaying.push(this.sampleName(path))
       audio.play()
+      audio.addEventListener('ended', (event) => {
+        this.currentlyPlaying = this.currentlyPlaying.filter(item => item !== this.sampleName(path))
+      })
     },
     sampleName (path) {
       return path.split('/').at(-1).split('.')[0]
+    },
+    classPlaying (sampleName) {
+      if (this.currentlyPlaying.includes(sampleName)) {
+        return 'playing'
+      }
     }
   }
 }
@@ -47,5 +55,9 @@ export default {
 }
 button.play-sample {
   aspect-ratio: 2/1;
+}
+
+button.playing {
+  background: #fcc;
 }
 </style>
