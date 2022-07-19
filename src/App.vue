@@ -5,6 +5,7 @@
       app
       fixed
       grow
+      color="primary"
     >
       <v-btn to="/">
         <span>Home</span>
