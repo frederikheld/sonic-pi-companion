@@ -1,0 +1,25 @@
+{
+  "editor.renderControlCharacters": true,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "vetur.format.enable": true,
+  "vetur.validation.template": false,
+  // Dirk Baeumer's "ESLint" extension:
+  "eslint.format.enable": true,
+  "eslint.workingDirectories": [
+    "./"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "vue",
+    "html"
+  ],
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "javascript.validate.enable": false,
+  "git.ignoreLimitWarning": true
+}
