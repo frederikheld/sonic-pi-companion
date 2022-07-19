@@ -14,7 +14,7 @@ const releaseEndpoint = 'https://api.github.com/repos/sonic-pi-net/sonic-pi/rele
 
 
 const indexFilePath = path.join('src', 'store', 'resources_index.json')
-const publicDirectory = './public/resources'
+const publicDirectory = 'assets/resources' // path within src, will be expanded with '@' by Vue
 const dirsToPublish = [
   { name: 'samples', path: path.join(path.resolve(resourcesDir), 'sonic-pi', 'etc', 'samples') }
 ]
@@ -53,12 +53,12 @@ async function publishFiles(resourcesDir, publicDir, dirsToPublish) {
   await Promise.all(
     Object.entries(index).map(([name, paths]) => {
       return new Promise(async (resolve, reject) => {
-        await fs.mkdir(path.join(path.resolve(publicDir), name), { recursive: true })
+        await fs.mkdir(path.resolve(path.join('src', publicDir, name)), { recursive: true })
 
         await Promise.all(
           paths.map(async (p) => {
             return new Promise (async (resolve, reject) => {
-              fs.copyFile(path.resolve(p.src), path.resolve(p.dest))
+              fs.copyFile(path.resolve(p.src), path.resolve(path.join('src', p.dest)))
               resolve()
             })
           })
