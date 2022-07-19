@@ -31,7 +31,7 @@
                   {{ sample.shortNameForHumans }}
                 </div>
 
-                <!-- <div class="playing-indicator"></div> -->
+                <div class="playing-indicator"></div>
               </v-card-text>
             </v-card>
           </div>
@@ -81,6 +81,36 @@ export default {
   box-sizing: border-box;
 }
 
+@media screen and (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 790px) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media screen and (min-width: 1264px) {
+  .grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media screen and (min-width: 1904px) {
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
 .play-button {
   border: 0.3rem solid #ccc;
   background-color: #666;
@@ -95,12 +125,12 @@ export default {
   }
 
 .playing:first-child {
-  border-color: red;
+  border-color: #f33;
   background-color: #422;
 }
 
   .playing * {
-    color: red;
+    color: #f33;
   }
 
 /* CSS ANIMATION */
