@@ -1,31 +1,43 @@
 <template>
   <v-container>
-    <v-row class="grid-row">
-      <v-col class="pa-3 grid">
-      <div
-        v-for="path, index in samplesPaths"
-        :key="index"
-        style="overflow: hidden;"
-      >
-        <v-card
-          class="play-button"
-          justify="center"
-          style="box-sizing: border-box;"
-          outlined
-          :class="isPlaying(sampleName(path)) ? 'playing' : ''"
-          @click="playSample(path)"
-        >
-          <v-card-text style="display: table;" class="fill-height">
-            <div style="vertical-align: middle; display: table-cell;" class="text-center">
-              {{ sampleName(path) }}
-            </div>
-
-            <div class="playing-indicator"></div>
-          </v-card-text>
-        </v-card>
-        </div>
+    <!-- <v-row>
+      <v-col>
+        <pre style="height: 300px; overflow-y: scroll;">{{ $store.getters.samplesByType }}</pre>
       </v-col>
-    </v-row>
+    </v-row> -->
+    <div v-for="(samples, type) in samples" :key="type">
+      <v-row>
+        <v-col class="pa-3">
+          <h3 class="width: 100%;">{{ type }}</h3>
+        </v-col>
+      </v-row>
+      <v-row  class="grid-row">
+        <v-col class="pa-3 grid">
+          <div
+            v-for="sample, sample_index in samples"
+            :key="sample_index"
+            style="overflow: hidden; width: 100%;"
+          >
+            <v-card
+              class="play-button"
+              justify="center"
+              style="box-sizing: border-box;"
+              outlined
+              :class="isPlaying(sample) ? 'playing' : ''"
+              @click="playSample(sample)"
+            >
+              <v-card-text style="display: table;" class="fill-height">
+                <div style="vertical-align: middle; display: table-cell;" class="text-center">
+                  {{ sample.shortNameForHumans }}
+                </div>
+
+                <!-- <div class="playing-indicator"></div> -->
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -40,24 +52,21 @@ export default {
     }
   },
   computed: {
-    samplesPaths () {
-      return this.$store.getters.resourcesIndex.samples
+    samples () {
+      return this.$store.getters.samplesByType
     }
   },
   methods: {
-    playSample (path) {
-      const audio = new Audio(require('@/' + path))
-      this.currentlyPlaying.push(this.sampleName(path))
+    playSample (sample) {
+      const audio = new Audio(require('@/' + sample.path))
+      this.currentlyPlaying.push(sample.name)
       audio.play()
       audio.addEventListener('ended', (event) => {
-        this.currentlyPlaying = this.currentlyPlaying.filter(item => item !== this.sampleName(path))
+        this.currentlyPlaying = this.currentlyPlaying.filter(item => item !== sample.name)
       })
     },
-    sampleName (path) {
-      return path.split('/').at(-1).split('.')[0].trim()
-    },
-    isPlaying (sampleName) {
-      return this.currentlyPlaying.includes(sampleName)
+    isPlaying (sample) {
+      return this.currentlyPlaying.includes(sample.name)
     }
   }
 }
@@ -66,19 +75,33 @@ export default {
 <style scoped>
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   row-gap: 0.8rem;
   column-gap: 0.8rem;
   box-sizing: border-box;
 }
 
 .play-button {
-  aspect-ratio: 2/1 !important;
+  border: 0.3rem solid #ccc;
+  background-color: #666;
+  color: #ccc;
+  aspect-ratio: 1 !important;
+  overflow: hidden;
 }
 
-.playing {
-  background: #ccc;
+  .play-button * {
+    background-color: none;
+    color: #ccc;
+  }
+
+.playing:first-child {
+  border-color: red;
+  background-color: #422;
 }
+
+  .playing * {
+    color: red;
+  }
 
 /* CSS ANIMATION */
 .playing .playing-indicator {
