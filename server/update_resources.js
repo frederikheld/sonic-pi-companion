@@ -7,10 +7,17 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const child_process = require('child_process')
 
 // CONFIG:
-const resourcesDir = path.resolve('./resources')
-const downloadPath = path.join(resourcesDir, '/latest-sonic-pi-release.tar.gz')
+const resourcesDir = './resources'
+const downloadPath = path.join(path.resolve(resourcesDir), '/latest-sonic-pi-release.tar.gz')
 const releaseEndpoint = 'https://api.github.com/repos/sonic-pi-net/sonic-pi/releases/latest'
 // const releaseEndpoint = 'https://api.github.com/repos/frederikheld/balena-reset/releases/latest' // small package for debugging
+
+
+const indexFilePath = path.join('src', 'store', 'resources_index.json')
+const publicDirectory = './public/resources'
+const dirsToPublish = [
+  { name: 'samples', path: path.join(path.resolve(resourcesDir), 'sonic-pi', 'etc', 'samples') }
+]
 
 async function main () {
   await prepareDirectory(resourcesDir)
@@ -22,9 +29,81 @@ async function main () {
   await writeFile(fileContents, downloadPath)
 
   await unzipFile(downloadPath, resourcesDir)
+
+  const directoryIndex = await publishFiles(resourcesDir, publicDirectory, dirsToPublish)
+
+  await writeIndexFile(indexFilePath, directoryIndex)
 }
 
 main()
+
+async function writeIndexFile(indexFilePath, index) {
+  console.log('Writing resource index to Vuex ...')
+  const fileHandle = await fs.open(indexFilePath, 'w')
+  fileHandle.write(JSON.stringify(index, null, 2))
+  console.log('  Done.')
+}
+
+async function publishFiles(resourcesDir, publicDir, dirsToPublish) {
+  console.log('Publishing selected files ...')
+
+  const index = await createDirectoryIndizes(resourcesDir, publicDir, dirsToPublish)
+
+  // copy files:
+  await Promise.all(
+    Object.entries(index).map(([name, paths]) => {
+      return new Promise(async (resolve, reject) => {
+        await fs.mkdir(path.join(path.resolve(publicDir), name), { recursive: true })
+
+        await Promise.all(
+          paths.map(async (p) => {
+            return new Promise (async (resolve, reject) => {
+              fs.copyFile(path.resolve(p.src), path.resolve(p.dest))
+              resolve()
+            })
+          })
+        )
+        resolve()
+      })
+    })
+  )
+
+  // clean up index file:
+  const indexToReturn = Object.entries(index).map(([key, paths]) => {
+    const value = paths.map(path => {
+      return path.dest
+    })
+    return { [key]: value }
+  })
+
+  console.log('  Done.')
+
+  // write index file:
+  return indexToReturn
+}
+
+async function createDirectoryIndizes(resourcesDir, publicDir, directories) {
+  const index = {}
+
+  await Promise.all(
+    directories.map(async (directory) => {
+      return new Promise(async (resolve, reject) => {
+        const filenames = await fs.readdir(directory.path)
+       
+        index[directory.name] =  filenames.filter(filename => filename.split('.')[1] === 'flac').map(entry => { 
+          return {
+            src: path.join(path.resolve(directory.path), entry),
+            dest: path.join('.', publicDir, directory.name, entry),
+          }
+        })
+        
+        resolve()
+      })
+    })
+  )
+
+  return index
+}
 
 async function unzipFile (inputFilePath, outputDir) {
   console.log('Unpacking file ...')

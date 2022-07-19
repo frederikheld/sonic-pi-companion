@@ -1,4 +1,6 @@
 /resources/
+/public/resources/
+/src/store/resources_index.json
 
 .DS_Store
 node_modules

@@ -37,12 +37,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Production
 
-### Build
-
-```
-$ npm run build
-```
-
 ### Download resources
 
 This repo comes with a script that automatically downloads the latest release of SonicPi from GitHub.
@@ -52,3 +46,11 @@ $ npm run update_resources
 ```
 
 You can run this script whenever a new version of SonicPi was released.
+
+Note that the resources have to be updated before the build as it will also create directory indizes that are being loaded into Vuex on build.
+
+### Build
+
+```
+$ npm run build
+```
