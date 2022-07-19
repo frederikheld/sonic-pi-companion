@@ -1,34 +1,54 @@
 # sonic-pi-tools
 
-## Project setup
+## Development
+
+### Project setup
 ```
-npm install
+$ npm install
 ```
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+$ npm run serve
 ```
 
-### Run your unit tests
+#### Compiles and minifies for production
 ```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
+$ npm run build
 ```
 
-### Lints and fixes files
+#### Run your unit tests
 ```
-npm run lint
+$ npm run test:unit
 ```
 
-### Customize configuration
+#### Run your end-to-end tests
+```
+$ npm run test:e2e
+```
+
+#### Lints and fixes files
+```
+$ npm run lint
+```
+
+#### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Production
+
+### Build
+
+```
+$ npm run build
+```
+
+### Download resources
+
+This repo comes with a script that automatically downloads the latest release of SonicPi from GitHub.
+
+```
+$ npm run update_resources
+```
+
+You can run this script whenever a new version of SonicPi was released.
