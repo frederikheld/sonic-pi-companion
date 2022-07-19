@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-row class="mt-12">
+      <v-col class="text-center align-center">
+        <v-img class="logo" src="https://sonic-pi.net/media/images/home/logo.png" />
+        <h1>Tools for SonicPi</h1>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+  components: { }
 }
 </script>
+
+<style scoped>
+.logo {
+  width: 60%;
+  max-width: 40rem;
+  display: inline-block;
+}
+</style>

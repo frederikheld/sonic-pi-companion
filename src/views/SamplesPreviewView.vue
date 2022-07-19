@@ -1,12 +1,30 @@
 <template>
-  <div class="grid">
-    <button  v-for="path, index in samplesPaths" :key="index" :class="classPlaying(sampleName(path))"
-      class="play-sample"
-      @click="playSample(path)"
-    >
-      {{ sampleName(path) }}
-    </button>
-  </div>
+  <v-container>
+    <v-row class="grid-row">
+      <v-col class="pa-3 grid">
+      <div
+        v-for="path, index in samplesPaths"
+        :key="index"
+        style="overflow: hidden;"
+      >
+        <v-card
+          class="play-button"
+          justify="center"
+          style="box-sizing: border-box;"
+          outlined
+          :class="classPlaying(sampleName(path))"
+          @click="playSample(path)"
+        >
+          <v-card-text style="display: table;" class="fill-height">
+            <div style="vertical-align: middle; display: table-cell;" class="text-center">
+              {{ sampleName(path) }}
+            </div>
+          </v-card-text>
+        </v-card>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -34,7 +52,7 @@ export default {
       })
     },
     sampleName (path) {
-      return path.split('/').at(-1).split('.')[0]
+      return path.split('/').at(-1).split('.')[0].trim()
     },
     classPlaying (sampleName) {
       if (this.currentlyPlaying.includes(sampleName)) {
@@ -47,17 +65,23 @@ export default {
 
 <style scoped>
 .grid {
-  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 0.4rem;
-  row-gap: 0.4rem;
-}
-button.play-sample {
-  aspect-ratio: 2/1;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 0.8rem;
+  column-gap: 0.8rem;
+  box-sizing: border-box;
 }
 
-button.playing {
-  background: #fcc;
+.play-button {
+  aspect-ratio: 2/1 !important;
+}
+
+  .play-button div {
+    /* display: block; */
+    /* aspect-ratio: 2/1 !important; */
+  }
+
+.playing {
+  background: #fcc !important;
 }
 </style>
