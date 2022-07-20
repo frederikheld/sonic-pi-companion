@@ -1,4 +1,6 @@
-# sonic-pi-companion
+# Sonic Pi Companion
+
+This app provides useful tools for working with [Sonic Pi](https://sonic-pi.net/).
 
 ## Development
 
@@ -12,11 +14,7 @@ $ npm install
 $ npm run serve
 ```
 
-#### Compiles and minifies for production
-```
-$ npm run build
-```
-
+<!--
 #### Run your unit tests
 ```
 $ npm run test:unit
@@ -26,20 +24,18 @@ $ npm run test:unit
 ```
 $ npm run test:e2e
 ```
+//-->
 
 #### Lints and fixes files
 ```
 $ npm run lint
 ```
 
-#### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 ## Production
 
 ### Download resources
 
-This repo comes with a script that automatically downloads the latest release of SonicPi from GitHub.
+This repo comes with a script that automatically downloads the latest release of SonicPi from GitHub and extracts the required resources.
 
 ```
 $ npm run update_resources
@@ -47,10 +43,11 @@ $ npm run update_resources
 
 You can run this script whenever a new version of SonicPi was released.
 
-Note that the resources have to be updated before the build as it will also create directory indizes that are being loaded into Vuex on build.
+Note that the resources have to be updated before the build as it will also create directory indizes that are being loaded into Vuex on build time.
 
 ### Build
 
+#### Compiles and minifies for production
 ```
 $ npm run build
 ```
