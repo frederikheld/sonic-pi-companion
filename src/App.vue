@@ -3,16 +3,16 @@
     <v-navigation-drawer v-model="navDrawerIsOpen" app absolute class="pt-12">
       <v-list>
         <v-list-item-group>
-          <v-list-item link to="/about">
-            <v-list-item-title>About</v-list-item-title>
+          <v-list-item link to="/about-app">
+            <v-list-item-title>About This App</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
-        <!-- <v-spacer />
+        <v-spacer />
         <v-list-item-group>
-          <v-list-item>
-            <v-list-item-title>Test</v-list-item-title>
+          <v-list-item link to="/about-sonic-pi">
+            <v-list-item-title>What Is SonicPi?</v-list-item-title>
           </v-list-item>
-        </v-list-item-group> -->
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
 

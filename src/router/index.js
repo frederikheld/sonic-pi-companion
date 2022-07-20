@@ -11,9 +11,14 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about-preview" */ '../views/AboutView.vue')
+    path: '/about-app',
+    name: 'about-app',
+    component: () => import(/* webpackChunkName: "about-app" */ '../views/AboutAppView.vue')
+  },
+  {
+    path: '/about-sonic-pi',
+    name: 'about-sonic-pi',
+    component: () => import(/* webpackChunkName: "about-sonic-pi" */ '../views/AboutSonicPiView.vue')
   },
   {
     path: '/samples-preview',

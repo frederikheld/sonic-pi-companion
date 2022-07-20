@@ -1,12 +1,9 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <p class="text-h4">About this App</p>
-        <p>This app provides useful tools that you can use while you're with SonicPi.</p>
-        <!-- <p>It is designed to work on smartphones and tablets, but is available as a webapp as well.</p> -->
-      </v-col>
-    </v-row>
+    <v-app-bar app flat class="app-bar white">
+      <v-app-bar-nav-icon @click.stop="$router.go(-1)"><v-icon>mdi-arrow-left</v-icon></v-app-bar-nav-icon>
+    </v-app-bar>
+
     <v-row>
       <v-col>
         <p class="text-h4">What is SonicPi?</p>
@@ -30,7 +27,7 @@
 
 <script>
 export default {
-  name: 'AboutView'
+  name: 'AboutSonicPiView'
 }
 </script>
 
