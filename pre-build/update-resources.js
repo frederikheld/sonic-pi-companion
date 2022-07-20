@@ -12,7 +12,7 @@ const downloadPath = path.join(path.resolve(resourcesDir), '/latest-sonic-pi-rel
 const releaseEndpoint = 'https://api.github.com/repos/sonic-pi-net/sonic-pi/releases/latest'
 // const releaseEndpoint = 'https://api.github.com/repos/frederikheld/balena-reset/releases/latest' // small package for debugging
 
-const indexFilePath = path.join('src', 'store', 'resources_index.json')
+const indexFilePath = path.join('src', 'store', 'build-time-data', 'resources-index.json')
 const publicDirectory = 'assets/resources' // path within src, will be expanded with '@' by Vue
 const dirsToPublish = [
   { name: 'samples', path: path.join(path.resolve(resourcesDir), 'sonic-pi', 'etc', 'samples') }

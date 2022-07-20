@@ -1,6 +1,6 @@
 /resources/
 /src/assets/resources/
-/src/store/resources_index.json
+/src/store/build-time-data/
 
 .DS_Store
 node_modules

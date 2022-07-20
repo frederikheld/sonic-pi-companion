@@ -4,12 +4,12 @@ This app provides useful tools for working with [Sonic Pi](https://sonic-pi.net/
 
 ## Development
 
-### Project setup
+### Install dependencies
 ```
 $ npm install
 ```
 
-#### Compiles and hot-reloads for development
+### Compile and hot-reload for development
 ```
 $ npm run serve
 ```
@@ -26,24 +26,30 @@ $ npm run test:e2e
 ```
 //-->
 
-#### Lints and fixes files
+### Lint and fixes files
 ```
 $ npm run lint
+$ npm run lint --fix
 ```
+
+The repo also comes with a VSCode configuration that enables auto format on save, if you have the official [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) installed.
 
 ## Production
 
-### Download resources
+### Prepare resources
 
-This repo comes with a script that automatically downloads the latest release of SonicPi from GitHub and extracts the required resources.
-
+Before you run the build script, you have to prepare the resources that are needed in the build process. This can be easily done by calling
+```sh
+$ npm run pre-build
 ```
-$ npm run update_resources
+
+This will download the latest release of Sonic Pi from GitHub and extract the required resources. It will also extract release info from `package.json`.
+
+Alternatively, you can run both operations independetly with the following commands
+```sh
+$ npm run update-release-info
+$ npm run update-resources
 ```
-
-You can run this script whenever a new version of SonicPi was released.
-
-Note that the resources have to be updated before the build as it will also create directory indizes that are being loaded into Vuex on build time.
 
 ### Build
 

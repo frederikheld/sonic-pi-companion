@@ -8,7 +8,9 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "update_resources": "node ./server/update_resources.js"
+    "pre-build": "sh ./pre-build/run.sh",
+    "update-release-info": "node ./pre-build/update-release-info.js",
+    "update-resources": "node ./pre-build/update-resources.js"
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
