@@ -15,7 +15,7 @@
           src="https://sonic-pi.net/media/images/home/logo.png"
         />
         <p class="text-h4 mt-2">
-          SonicPi
+          Sonic Pi
         </p>
         <p class="text-h5 mt-2">
           Companion

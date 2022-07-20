@@ -19,7 +19,7 @@
             link
             to="/about-sonic-pi"
           >
-            <v-list-item-title>What Is SonicPi?</v-list-item-title>
+            <v-list-item-title>What Is Sonic Pi?</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>

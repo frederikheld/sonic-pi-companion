@@ -15,17 +15,35 @@
         <p class="text-h4">
           This App
         </p>
-        <p>This app provides useful tools that you can use while you're with SonicPi. It is free to use.</p>
-        <!-- <p>It is designed to work on smartphones and tablets, but is available as a webapp as well.</p> -->
+        <p><em>Sonic Pi Companion</em> provides useful tools that makes working with SonicPi a bit easier here and there. It is free to use, but with no warranty given.</p>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <p class="text-h4">
+        <p class="text-h6">
+          Contribute
+        </p>
+        <p>The source code is publicly available on GitHub. You are very much invited to contribute your ideas, improvements or new features. Visit the repository on GitHub to learn how you can contribute.</p>
+        <!-- <p>It is designed to work on smartphones and tablets, but is available as a webapp as well.</p> -->
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="text-center">
+        <v-btn
+          href="https://github.com/frederikheld/sonic-pi-companion"
+          target="_blank"
+          class="mx-auto mt-n4 mb-4 primary"
+        >
+          Go to GitHub
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <p class="text-h6">
           The Author
         </p>
-        <p>This app is being developed by Frederik Held, a fellow SonicPi musician.</p>
-        <!-- <p> -->
+        <p><em>Sonic Pi Companion</em> is being developed and maintained by Frederik Held, a fellow SonicPi musician.</p>
       </v-col>
     </v-row>
     <v-row>
@@ -39,12 +57,14 @@
         </v-btn>
       </v-col>
     </v-row>
-    <!-- <v-row>
+    <v-row>
       <v-col>
-        <p class="text-h4">Contribute</p>
-        <p>This app is being developed by Frederik Held, a fellow SonicPi musician.</p>
+        <p class="text-h6">
+          Version
+        </p>
+        <p>Current version is {{ $store.getters.currentAppVersion }}</p>
       </v-col>
-    </v-row> -->
+    </v-row>
   </v-container>
 </template>
 

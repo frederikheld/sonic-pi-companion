@@ -13,9 +13,9 @@
     <v-row>
       <v-col>
         <p class="text-h4">
-          What is SonicPi?
+          What is Sonic Pi?
         </p>
-        <p>Quoting from the SonicPi website:</p>
+        <p>Quoting from the Sonic Pi website:</p>
         <cite>
           <p>Sonic Pi is a code-based music creation and performance tool.</p>
           <p><span class="primary--text">Simple</span> enough for computing and music lessons.</p>
@@ -32,7 +32,7 @@
           target="_blank"
           class="mx-auto primary"
         >
-          Learn more about SonicPi
+          Learn More
         </v-btn>
       </v-col>
     </v-row>
