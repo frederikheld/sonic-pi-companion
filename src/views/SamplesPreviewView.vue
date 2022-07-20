@@ -260,6 +260,7 @@ section {
   color: var(--v-secondary-lighten4);
   aspect-ratio: 1 !important;
   overflow: hidden;
+  user-select: none;
 }
 
   .play-button p {
