@@ -1,14 +1,25 @@
 <template>
   <v-container>
-    <v-app-bar app flat class="app-bar white">
-      <v-app-bar-nav-icon @click.stop="navDrawerIsOpen = !navDrawerIsOpen"><v-icon v-if="navDrawerIsOpen">mdi-close</v-icon></v-app-bar-nav-icon>
+    <v-app-bar
+      app
+      flat
+      class="app-bar white"
+    >
+      <v-app-bar-nav-icon @click.stop="navDrawerIsOpen = !navDrawerIsOpen" />
     </v-app-bar>
 
     <v-row class="mt-12">
       <v-col class="text-center align-center">
-        <v-img class="logo" src="https://sonic-pi.net/media/images/home/logo.png" />
-        <p class="text-h4 mt-2">SonicPi</p>
-        <p class="text-h5 mt-2">Companion</p>
+        <v-img
+          class="logo"
+          src="https://sonic-pi.net/media/images/home/logo.png"
+        />
+        <p class="text-h4 mt-2">
+          SonicPi
+        </p>
+        <p class="text-h5 mt-2">
+          Companion
+        </p>
       </v-col>
     </v-row>
   </v-container>

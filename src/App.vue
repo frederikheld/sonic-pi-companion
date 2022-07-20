@@ -1,15 +1,24 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="navDrawerIsOpen" app absolute class="pt-12">
+    <v-navigation-drawer
+      v-model="navDrawerIsOpen"
+      app
+    >
       <v-list>
         <v-list-item-group>
-          <v-list-item link to="/about-app">
+          <v-list-item
+            link
+            to="/about-app"
+          >
             <v-list-item-title>About This App</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
         <v-spacer />
         <v-list-item-group>
-          <v-list-item link to="/about-sonic-pi">
+          <v-list-item
+            link
+            to="/about-sonic-pi"
+          >
             <v-list-item-title>What Is SonicPi?</v-list-item-title>
           </v-list-item>
         </v-list-item-group>

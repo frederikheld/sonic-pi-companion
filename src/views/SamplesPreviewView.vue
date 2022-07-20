@@ -1,12 +1,57 @@
 <template>
-  <v-container ref="container" id="container">
-    <v-app-bar app elevation="1" class="app-bar white">
-      <v-slide-group v-model="activeSection" show-arrows center-active>
-        <v-slide-item v-for="(samples, type) in samples" :key="type" v-slot="{ active, toggle }" class="white">
-          <v-btn :href="'#' + type" @click="toggle" :input-value="active" depressed rounded active-class="primary">{{ type }}</v-btn>
-        </v-slide-item>
-      </v-slide-group>
+  <v-container
+    id="container"
+    ref="container"
+  >
+    <v-app-bar
+      app
+      elevation="1"
+      class="app-bar white"
+    >
+      <v-app-bar-nav-icon @click.stop="navDrawerIsOpen = !navDrawerIsOpen" />
+      <v-spacer />
+      <v-btn
+        icon
+        @click="settingsMenuIsOpen = true"
+      >
+        <v-icon>mdi-cog-outline</v-icon>
+      </v-btn>
+
+      <template #extension>
+        <v-slide-group
+          v-model="activeSection"
+          show-arrows
+          center-active
+        >
+          <v-slide-item
+            v-for="(items, type) in samples"
+            :key="type"
+            v-slot="{ active, toggle }"
+            class="white"
+          >
+            <v-btn
+              :href="'#' + type"
+              :input-value="active"
+              depressed
+              rounded
+              active-class="primary"
+              @click="toggle"
+            >
+              {{ type }}
+            </v-btn>
+          </v-slide-item>
+        </v-slide-group>
+      </template>
     </v-app-bar>
+
+    <v-bottom-sheet v-model="settingsMenuIsOpen">
+      <v-card>
+        <v-card-title>Settings</v-card-title>
+        <v-card-text>
+          <p>Nothing to see here</p>
+        </v-card-text>
+      </v-card>
+    </v-bottom-sheet>
 
     <!-- <div style="width: 120px; display: flex;">
       <v-icon>mdi-speaker</v-icon>
@@ -17,7 +62,12 @@
 
     <!-- <div style="position: fixed; top: 72px; right: 16px; background: #fcc; z-index: 100;">{{ activeSection }}</div> -->
 
-    <section v-for="(samples, type) in samples" :key="type" :id="type" :ref="'sample_' + type">
+    <section
+      v-for="(item, type) in samples"
+      :id="type"
+      :key="type"
+      :ref="'sample_' + type"
+    >
       <v-row>
         <v-col class="pa-3 mt-4 mb-0">
           <span class="text-h5">{{ type }}</span>
@@ -26,7 +76,7 @@
       <v-row class="grid-row">
         <v-col class="grid">
           <div
-            v-for="sample, sample_index in samples"
+            v-for="sample, sample_index in item"
             :key="sample_index"
             style="overflow: hidden; width: 100%;"
           >
@@ -38,10 +88,18 @@
               :class="isPlaying(sample) ? 'playing' : ''"
               @click="playSample(sample)"
             >
-              <v-card-text style="display: table;" class="fill-height pa-0">
-                <div style="display: table-cell;" class="text-center">
-                  <p class="title">{{ sample.shortNameForHumans }}</p>
-                  <p class="subtitle">{{ sample.name }}</p>
+              <v-card-text
+                style="display: table;"
+                class="fill-height pa-0"
+              >
+                <div
+                  style="display: table-cell;"
+                  class="text-center"
+                >
+                  <p class="title">
+                    {{ sample.shortNameForHumans }}
+                  </p>
+                  <!-- <p class="subtitle">{{ sample.name }}</p> -->
                 </div>
               </v-card-text>
             </v-card>
@@ -62,12 +120,26 @@ export default {
       currentlyPlaying: [],
       multiplePlayback: true,
       activeSection: 0,
-      sectionAnchors: []
+      sectionAnchors: [],
+      settingsMenuIsOpen: false
     }
   },
   computed: {
     samples () {
       return this.$store.getters.samplesByType
+    },
+    navDrawerIsOpen: {
+      get () {
+        return this.$route.hash === '#navDrawerIsOpen'
+      },
+      set (navDrawerIsOpen) {
+        if (navDrawerIsOpen && this.$route.hash !== '#navDrawerIsOpen') {
+          this.$router.replace('#navDrawerIsOpen')
+        }
+        if (!navDrawerIsOpen && this.$route.hash !== '') {
+          this.$router.replace('')
+        }
+      }
     }
   },
   mounted () {

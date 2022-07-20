@@ -1,25 +1,19 @@
 {
+  // VSCode:
   "editor.renderControlCharacters": true,
-  "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "vetur.format.enable": true,
-  "vetur.validation.template": false,
-  // Dirk Baeumer's "ESLint" extension:
+  // dbaeumer.vscode-eslint:
   "eslint.format.enable": true,
-  "eslint.workingDirectories": [
-    "./"
-  ],
   "eslint.validate": [
     "javascript",
     "vue",
     "html"
   ],
-  "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "file",
-  "javascript.validate.enable": false,
-  "git.ignoreLimitWarning": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // Vetur:
+  "vetur.format.enable": true,
+  "vetur.validation.template": false,
 }

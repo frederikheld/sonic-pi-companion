@@ -12,7 +12,6 @@ const downloadPath = path.join(path.resolve(resourcesDir), '/latest-sonic-pi-rel
 const releaseEndpoint = 'https://api.github.com/repos/sonic-pi-net/sonic-pi/releases/latest'
 // const releaseEndpoint = 'https://api.github.com/repos/frederikheld/balena-reset/releases/latest' // small package for debugging
 
-
 const indexFilePath = path.join('src', 'store', 'resources_index.json')
 const publicDirectory = 'assets/resources' // path within src, will be expanded with '@' by Vue
 const dirsToPublish = [
@@ -37,34 +36,28 @@ async function main () {
 
 main()
 
-async function writeIndexFile(indexFilePath, index) {
+async function writeIndexFile (indexFilePath, index) {
   console.log('Writing resource index to Vuex ...')
   const fileHandle = await fs.open(indexFilePath, 'w')
   fileHandle.write(JSON.stringify(index, null, 2))
   console.log('  Done.')
 }
 
-async function publishFiles(resourcesDir, publicDir, dirsToPublish) {
+async function publishFiles (resourcesDir, publicDir, dirsToPublish) {
   console.log('Publishing selected files ...')
 
   const index = await createDirectoryIndizes(resourcesDir, publicDir, dirsToPublish)
 
   // copy files:
   await Promise.all(
-    Object.entries(index).map(([name, paths]) => {
-      return new Promise(async (resolve, reject) => {
-        await fs.mkdir(path.resolve(path.join('src', publicDir, name)), { recursive: true })
+    Object.entries(index).map(async ([name, paths]) => {
+      await fs.mkdir(path.resolve(path.join('src', publicDir, name)), { recursive: true })
 
-        await Promise.all(
-          paths.map(async (p) => {
-            return new Promise (async (resolve, reject) => {
-              fs.copyFile(path.resolve(p.src), path.resolve(path.join('src', p.dest)))
-              resolve()
-            })
-          })
-        )
-        resolve()
-      })
+      await Promise.all(
+        paths.map(async (p) => {
+          await fs.copyFile(path.resolve(p.src), path.resolve(path.join('src', p.dest)))
+        })
+      )
     })
   )
 
@@ -82,21 +75,21 @@ async function publishFiles(resourcesDir, publicDir, dirsToPublish) {
   return indexToReturn
 }
 
-async function createDirectoryIndizes(resourcesDir, publicDir, directories) {
+async function createDirectoryIndizes (resourcesDir, publicDir, directories) {
   const index = {}
 
   await Promise.all(
     directories.map(async (directory) => {
       return new Promise(async (resolve, reject) => {
         const filenames = await fs.readdir(directory.path)
-       
-        index[directory.name] =  filenames.filter(filename => filename.split('.')[1] === 'flac').map(entry => { 
+
+        index[directory.name] = filenames.filter(filename => filename.split('.')[1] === 'flac').map(entry => {
           return {
             src: path.join(path.resolve(directory.path), entry),
-            dest: path.join('.', publicDir, directory.name, entry),
+            dest: path.join('.', publicDir, directory.name, entry)
           }
         })
-        
+
         resolve()
       })
     })
