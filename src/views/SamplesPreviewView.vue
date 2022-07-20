@@ -10,12 +10,12 @@
     >
       <v-app-bar-nav-icon @click.stop="navDrawerIsOpen = !navDrawerIsOpen" />
       <v-spacer />
-      <v-btn
+      <!-- <v-btn
         icon
         @click="settingsMenuIsOpen = true"
       >
         <v-icon>mdi-cog-outline</v-icon>
-      </v-btn>
+      </v-btn> -->
 
       <template #extension>
         <v-slide-group
