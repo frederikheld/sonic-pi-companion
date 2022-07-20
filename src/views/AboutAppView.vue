@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="max-width: 600px;">
     <v-app-bar
       app
       flat
