@@ -1,8 +1,8 @@
 <template>
   <v-container ref="container" id="container">
-    <v-app-bar app class="app-bar">
-      <v-slide-group v-model="activeSection" show-arrows>
-        <v-slide-item v-for="(samples, type) in samples" :key="type" v-slot="{ active, toggle }">
+    <v-app-bar app elevation="1" class="app-bar white">
+      <v-slide-group v-model="activeSection" show-arrows center-active>
+        <v-slide-item v-for="(samples, type) in samples" :key="type" v-slot="{ active, toggle }" class="white">
           <v-btn :href="'#' + type" @click="toggle" :input-value="active" depressed rounded active-class="primary">{{ type }}</v-btn>
         </v-slide-item>
       </v-slide-group>
@@ -24,7 +24,7 @@
         </v-col>
       </v-row>
       <v-row class="grid-row">
-        <v-col class="pa-3 grid">
+        <v-col class="grid">
           <div
             v-for="sample, sample_index in samples"
             :key="sample_index"
@@ -38,12 +38,11 @@
               :class="isPlaying(sample) ? 'playing' : ''"
               @click="playSample(sample)"
             >
-              <v-card-text style="display: table;" class="fill-height">
-                <div style="vertical-align: middle; display: table-cell;" class="text-center">
-                  {{ sample.shortNameForHumans }}
+              <v-card-text style="display: table;" class="fill-height pa-0">
+                <div style="display: table-cell;" class="text-center">
+                  <p class="title">{{ sample.shortNameForHumans }}</p>
+                  <p class="subtitle">{{ sample.name }}</p>
                 </div>
-
-                <div class="playing-indicator"></div>
               </v-card-text>
             </v-card>
           </div>
@@ -62,7 +61,7 @@ export default {
     return {
       currentlyPlaying: [],
       multiplePlayback: true,
-      activeSection: undefined,
+      activeSection: 0,
       sectionAnchors: []
     }
   },
@@ -85,9 +84,9 @@ export default {
         this.currentlyPlaying = this.currentlyPlaying.filter(item => item !== sample.name)
       })
     },
-    stopAllPlayback (sample) {
+    // stopAllPlayback (sample) {
 
-    },
+    // },
     isPlaying (sample) {
       return this.currentlyPlaying.includes(sample.name)
     },
@@ -133,37 +132,8 @@ export default {
 </script>
 
 <style scoped>
-
-#container {
+/* * /deep/ #container {
   scroll-behavior: smooth;
-}
-/* APP BAR */
-
-/* .app-bar /deep/ .v-toolbar__content {
-  padding-left: 0;
-  padding-right: 0;
-} */
-
-section {
-  display: block !important;
-}
-
-/* .app-bar {
-  display: inline-grid;
-  grid-template-columns: auto 1fr;
-  /* width: 100%; */
-  /* background: red; */
-/* } */
-
-/* .app-bar .quick-access-links { }
-
-.app-bar .playback-toggle {
-  align-content: right;
-} */
-
-/* .app-bar-container .playback-toggle > div {
-  width: 200px;
-  background-color: #422;
 } */
 
 /* DRUM PADS */
@@ -211,90 +181,48 @@ section {
 }
 
 .play-button {
-  border: 0.3rem solid #ccc;
-  background-color: #666;
-  color: #ccc;
+  border: 0.3rem solid var(--v-secondary-lighten4);
+  background-color: var(--v-secondary-base);
+  color: var(--v-secondary-lighten4);
   aspect-ratio: 1 !important;
   overflow: hidden;
 }
 
-  .play-button * {
+  .play-button p {
+    margin: 0;
+  }
+
+  .play-button .title {
+    font-size: 140%;
+    line-height: 140%;
+  }
+
+  .play-button .subtitle {
+    font-size: 80%;
+  }
+
+  .play-button > * > div { /* v-card-text */
     background-color: none;
-    color: #ccc;
+    color: var(--v-secondary-lighten4);
+    /* color: #ccc; */
+    vertical-align: middle;
+    padding: 10%;
   }
 
 .playing:first-child {
-  border-color: #f33;
-  background-color: #422;
+  border-color: var(--v-primary-base);
+  background-color: var(--v-primary-lighten5);
 }
 
-  .playing * {
-    /* color: #f33; */
+  .play-button.playing > * {
+    color: var(--v-primary-base);
   }
 
-.playback-toggle {
-  /* display: inline; */
-  /* white-space: nowrap; */
-}
+  .play-button.playing > * > div {
+    color: var(--v-primary-base);
+  }
 
-.playback-toggle > * {
-  /* display: inline; */
+/* .playback-toggle > * {
   float: left;
-}
-
-/* CSS ANIMATION */
-
-.playing .playing-indicator {
-  position: absolute;
-  right: 0.9rem;
-  bottom: 0.4rem;
-
-  width: 0.3rem;
-  height: 1.0rem;
-  border-radius: 0.15rem;
-  display: block;
-  margin-left: 0.5rem;
-  color: #fff;
-  background-color: currentColor;
-  box-sizing: border-box;
-  animation: animloader 0.3s 0.3s linear infinite alternate;
-}
-
-.playing .playing-indicator::after,
-.playing .playing-indicator::before {
-  content: '';
-  background-color: currentColor;
-  box-sizing: border-box;
-  width: 0.3rem;
-  height: 1.0rem;
-  border-radius: 0.15rem;
-  position: absolute;
-  bottom: 0;
-  left: 0.4rem;
-  animation: animloader1 0.3s  0.45s  linear infinite alternate;
-  transition: background-color 0.4s linear;
-}
-
-.playing .playing-indicator::before {
-  left: -0.4rem;
-  animation-delay: 0s;
-}
-
-@keyframes animloader {
-  0% {
-    height: 1.0rem;
-  }
-  100% {
-    height: 0.4rem;
-  }
-}
-
-@keyframes animloader1 {
-  0% {
-    height: 1.0rem;
-  }
-  100% {
-    height: 0.2rem;
-  }
-}
+} */
 </style>

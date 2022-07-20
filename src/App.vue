@@ -1,6 +1,21 @@
 <template>
-  <!-- <v-app style="overflow-x: hidden"> -->
   <v-app>
+    <v-navigation-drawer v-model="navDrawerIsOpen" app absolute class="pt-12">
+      <v-list>
+        <v-list-item-group>
+          <v-list-item link to="/about">
+            <v-list-item-title>About</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+        <!-- <v-spacer />
+        <v-list-item-group>
+          <v-list-item>
+            <v-list-item-title>Test</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group> -->
+      </v-list>
+    </v-navigation-drawer>
+
     <v-bottom-navigation
       app
       fixed
@@ -22,6 +37,30 @@
     </v-main>
   </v-app>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  data () {
+    return { }
+  },
+  computed: {
+    navDrawerIsOpen: {
+      get () {
+        return this.$route.hash === '#navDrawerIsOpen'
+      },
+      set (navDrawerIsOpen) {
+        if (navDrawerIsOpen && this.$route.hash !== '#navDrawerIsOpen') {
+          this.$router.replace('#navDrawerIsOpen')
+        }
+        if (!navDrawerIsOpen && this.$route.hash !== '') {
+          this.$router.replace('')
+        }
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
 /* fixes bug with misplaced buttons in bottom-navigation
