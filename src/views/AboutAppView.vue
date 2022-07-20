@@ -15,7 +15,7 @@
         <p class="text-h4">
           This App
         </p>
-        <p><em>Sonic Pi Companion</em> provides useful tools that makes working with SonicPi a bit easier here and there. It is free to use, but with no warranty given.</p>
+        <p><em>Sonic Pi Companion</em> provides useful tools that makes support working with Sonic Pi. It is free to use, but with no warranty given.</p>
       </v-col>
     </v-row>
     <v-row>
@@ -43,7 +43,7 @@
         <p class="text-h6">
           The Author
         </p>
-        <p><em>Sonic Pi Companion</em> is being developed and maintained by Frederik Held, a fellow SonicPi musician.</p>
+        <p><em>Sonic Pi Companion</em> is being developed and maintained by Frederik Held, a fellow Sonic Pi musician.</p>
       </v-col>
     </v-row>
     <v-row>

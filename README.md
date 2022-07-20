@@ -2,6 +2,14 @@
 
 This app provides useful tools for working with [Sonic Pi](https://sonic-pi.net/).
 
+## Contribute
+
+You are happily invited to contribute your ideas, improvements and new features!
+
+If you found a bug or miss a feature, please check the [Issues](https://github.com/frederikheld/sonic-pi-companion/issues) if it was already filed. If not, please [open a new Issue](https://github.com/frederikheld/sonic-pi-companion/issues/new) with some details what went wrong.
+
+If you would like to contribute, feel free to submit [Pull Requests](https://github.com/frederikheld/sonic-pi-companion/pulls). Pull Requests that are related to open Issues will be treated with priority.
+
 ## Development
 
 ### Install dependencies
