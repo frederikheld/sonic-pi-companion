@@ -7,7 +7,7 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const child_process = require('child_process')
 
 // CONFIG:
-const resourcesDir = './resources'
+const resourcesDir = path.join('.', 'resources')
 const downloadPath = path.join(path.resolve(resourcesDir), '/latest-sonic-pi-release.tar.gz')
 const releaseEndpoint = 'https://api.github.com/repos/sonic-pi-net/sonic-pi/releases/latest'
 // const releaseEndpoint = 'https://api.github.com/repos/frederikheld/balena-reset/releases/latest' // small package for debugging
@@ -80,17 +80,13 @@ async function createDirectoryIndizes (resourcesDir, publicDir, directories) {
 
   await Promise.all(
     directories.map(async (directory) => {
-      return new Promise(async (resolve, reject) => {
-        const filenames = await fs.readdir(directory.path)
+      const filenames = await fs.readdir(directory.path)
 
-        index[directory.name] = filenames.filter(filename => filename.split('.')[1] === 'flac').map(entry => {
-          return {
-            src: path.join(path.resolve(directory.path), entry),
-            dest: path.join('.', publicDir, directory.name, entry)
-          }
-        })
-
-        resolve()
+      index[directory.name] = filenames.filter(filename => filename.split('.')[1] === 'flac').map(entry => {
+        return {
+          src: path.join(path.resolve(directory.path), entry),
+          dest: path.join('.', publicDir, directory.name, entry)
+        }
       })
     })
   )

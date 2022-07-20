@@ -4,10 +4,10 @@ const path = require('path')
 const fs = require('fs/promises')
 
 // src:
-const packageFilePath = './package.json'
+const packageFilePath = path.join('.', 'package.json')
 
 // dest:
-const releaseInfoPath = './src/store/build-time-data/release-info.json'
+const releaseInfoPath = path.join('.', 'src', 'store', 'build-time-data', 'release-info.json')
 
 async function main () {
   const packageData = await JSON.parse(await fs.readFile(path.resolve(packageFilePath)))

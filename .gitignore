@@ -1,6 +1,7 @@
 /resources/
 /src/assets/resources/
-/src/store/build-time-data/
+/src/store/build-time-data/*
+!/src/store/build-time-data/.gitkeep
 
 .DS_Store
 node_modules
