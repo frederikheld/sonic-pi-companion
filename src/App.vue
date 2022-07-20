@@ -1,12 +1,11 @@
 <template>
   <v-app>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-model="navDrawerIsOpen"
       app
     >
       <template #append>
         <v-list>
-          <!-- <v-list-item-group> -->
           <v-list-item
             link
             to="/about-app"
@@ -14,8 +13,6 @@
             <v-list-item-action><v-icon>mdi-information-outline</v-icon></v-list-item-action>
             <v-list-item-title>About This App</v-list-item-title>
           </v-list-item>
-          <!-- </v-list-item-group>
-        <v-list-item-group> -->
           <v-list-item
             link
             to="/about-sonic-pi"
@@ -23,10 +20,9 @@
             <v-list-item-action><v-icon>mdi-pi</v-icon></v-list-item-action>
             <v-list-item-title>What Is Sonic Pi?</v-list-item-title>
           </v-list-item>
-        <!-- </v-list-item-group> -->
         </v-list>
       </template>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
 
     <v-bottom-navigation
       app

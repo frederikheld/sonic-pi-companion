@@ -8,7 +8,7 @@
       elevation="1"
       class="app-bar white"
     >
-      <v-app-bar-nav-icon @click.stop="navDrawerIsOpen = !navDrawerIsOpen" />
+      <!-- <v-app-bar-nav-icon @click.stop="navDrawerIsOpen = !navDrawerIsOpen" /> -->
       <v-spacer />
       <!-- <v-btn
         icon
@@ -17,31 +17,33 @@
         <v-icon>mdi-cog-outline</v-icon>
       </v-btn> -->
 
-      <template #extension>
-        <v-slide-group
-          v-model="activeSection"
-          show-arrows
-          center-active
+      <!-- <template #extension> -->
+      <v-slide-group
+        v-model="activeSection"
+        show-arrows
+        center-active
+      >
+        <v-slide-item
+          v-for="(items, type) in samples"
+          :key="type"
+          v-slot="{ active, toggle }"
+          class="white"
         >
-          <v-slide-item
-            v-for="(items, type) in samples"
-            :key="type"
-            v-slot="{ active, toggle }"
-            class="white"
+          <v-btn
+            :href="'#' + type"
+            :input-value="active"
+            depressed
+            rounded
+            active-class="primary"
+            @click="toggle"
           >
-            <v-btn
-              :href="'#' + type"
-              :input-value="active"
-              depressed
-              rounded
-              active-class="primary"
-              @click="toggle"
-            >
-              {{ type }}
-            </v-btn>
-          </v-slide-item>
-        </v-slide-group>
-      </template>
+            {{ type }}
+          </v-btn>
+        </v-slide-item>
+      </v-slide-group>
+      <!-- </template> -->
+
+      <v-spacer />
     </v-app-bar>
 
     <v-bottom-sheet v-model="settingsMenuIsOpen">
