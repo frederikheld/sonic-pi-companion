@@ -1,4 +1,4 @@
-# sonic-pi-tools
+# sonic-pi-companion
 
 ## Development
 
