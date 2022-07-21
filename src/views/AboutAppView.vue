@@ -65,6 +65,31 @@
         <p>Current version is {{ $store.getters.currentAppVersion }}</p>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <p class="text-h6">
+          Credits
+        </p>
+        <p>
+          Sonic Pi logo used by <a
+            href="https://twitter.com/samaaron/status/1550052327259783169"
+            target="_blank"
+          >permission of Sonic Pi</a>.
+        </p>
+        <p>
+          Uses samples from Sonic Pi which were originally published under <a
+            href="https://creativecommons.org/publicdomain/zero/1.0/"
+            target="_blank"
+          >CC0 License</a> by <a
+            href="https://freesound.org"
+            target="_blank"
+          >freesound.org</a>. See <a
+            href="https://github.com/sonic-pi-net/sonic-pi/blob/dev/etc/samples/README.md"
+            target="_blank"
+          >this document</a> for details.
+        </p>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
