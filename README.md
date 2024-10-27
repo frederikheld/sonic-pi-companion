@@ -1,6 +1,8 @@
 # Sonic Pi Companion
 
-This app provides useful tools for working with [Sonic Pi](https://sonic-pi.net/).
+This app lets you easily browse and try the different samples that come with [Sonic Pi](https://sonic-pi.net/). Especially useful if you're new to Sonic Pi and haven't memorized all the samples yet.
+
+> Try the app at [sonicpicompanion.frederikheld.de](https://sonicpicompanion.frederikheld.de/)
 
 ## Contribute
 
